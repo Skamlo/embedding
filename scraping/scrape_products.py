@@ -334,7 +334,7 @@ class ScrapeProducts:
                 else:
                     break
             else:
-                print(f"Unable to scrape product: {product_data.get("url")}")
+                print(f"Unable to scrape product: {product_data.get('url')}")
                 FileManager.add(product_data, unscraped_path)
                 continue
 
