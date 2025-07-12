@@ -1,0 +1,96 @@
+country,code,domain,language,works
+United Arab Emirates,ae,https://www.ikea.com/ae/en/,English,true
+United Arab Emirates,ae,https://www.ikea.com/ae/ar/,Arabic,true
+Hong Kong,hk,https://www.ikea.com.hk/en/,English,true
+Hong Kong,hk,https://www.ikea.com.hk/zh,Chinese (Traditional),true
+Dominican Republic,do,https://www.ikea.com.do/en/,English,true
+Dominican Republic,do,https://www.ikea.com.do/es/,Spanish,true
+Canada,ca,https://www.ikea.com/ca/en/,English,true
+Canada,ca,https://www.ikea.com/ca/fr/,French,true
+Morocco,ma,https://www.ikea.com/ma/en/,English,true
+Morocco,ma,https://www.ikea.com/ma/fr/,French,true
+Morocco,ma,https://www.ikea.com/ma/ar/,Arabic,true
+Poland,pl,https://www.ikea.com/pl/pl/,Polish,true
+Jordan,jo,https://www.ikea.com/jo/en/,English,true
+Jordan,jo,https://www.ikea.com/jo/ar/,Arabic,true
+Czech Republic,cz,https://www.ikea.com/cz/en/,English,true
+Czech Republic,cz,https://www.ikea.com/cz/cs/,Czech,true
+Thailand,th,https://www.ikea.com/th/en/,English,true
+Thailand,th,https://www.ikea.com/th/th/,Thai,true
+United Kingdom,gb,https://www.ikea.com/gb/en/,English,true
+Switzerland,ch,https://www.ikea.com/ch/en/,English,true
+Switzerland,ch,https://www.ikea.com/ch/de/,German,true
+Switzerland,ch,https://www.ikea.com/ch/fr/,French,true
+Switzerland,ch,https://www.ikea.com/ch/it/,Italian,true
+Republic of Serbia,rs,https://www.ikea.com/rs/sr/,Serbian,true
+Belgium,be,https://www.ikea.com/be/en/,English,true
+Belgium,be,https://www.ikea.com/be/fr/,French,true
+Belgium,be,https://www.ikea.com/be/nl/,Dutch,true
+Bahrain,bh,https://www.ikea.com/bh/en/,English,true
+Bahrain,bh,https://www.ikea.com/bh/ar/,Arabic,true
+Hungary,hu,https://www.ikea.com/hu/hu/,Hungarian,true
+Indonesia,id,https://www.ikea.co.id/en/,English,true
+Indonesia,id,https://www.ikea.co.id/in,Indonesian,true
+Egypt,eg,https://www.ikea.com/eg/en/,English,true
+Egypt,eg,https://www.ikea.com/eg/ar/,Arabic,true
+United States of America,us,https://www.ikea.com/us/en/,English,true
+United States of America,us,https://www.ikea.com/us/es/,Spanish,true
+Slovakia,sk,https://www.ikea.com/sk/sk/,Slovak,true
+Sweden,se,https://www.ikea.com/se/en/,English,true
+Sweden,se,https://www.ikea.com/se/sv/,Swedish,true
+Singapore,sg,https://www.ikea.com/sg/en/,English,true
+Philippines,ph,https://www.ikea.com/ph/en/,English,true
+Portugal,pt,https://www.ikea.com/pt/en/,English,true
+Portugal,pt,https://www.ikea.com/pt/pt/,Portuguese,true
+Denmark,dk,https://www.ikea.com/dk/da/,Danish,true
+Iceland,is,https://www.ikea.is/is,Icelandic,true
+Iceland,is,https://www.ikea.is,English,true
+Lithuania,lt,https://www.ikea.lt/en/,English,true
+Lithuania,lt,https://www.ikea.lt/ru/,Russian,true
+Lithuania,lt,https://www.ikea.lt/lt/,Lithuanian,true
+New Zealand,nz,https://www.ikea.com/nz/en/,English,true
+Australia,au,https://www.ikea.com/au/en/,English,true
+China,cn,https://www.ikea.cn/cn/en/,English,true
+China,cn,https://www.ikea.cn/cn/zh/,Chinese (Simplified),true
+Saudi Arabia,sa,https://www.ikea.com/sa/en/,English,true
+Saudi Arabia,sa,https://www.ikea.com/sa/ar/,Arabic,true
+Kuwait,kw,https://www.ikea.com/kw/en/,English,true
+Kuwait,kw,https://www.ikea.com/kw/ar/,Arabic,true
+South Korea,kr,https://www.ikea.com/kr/en/,English,true
+South Korea,kr,https://www.ikea.com/kr/ko/,Korean,true
+Finland,fi,https://www.ikea.com/fi/en/,English,true
+Finland,fi,https://www.ikea.com/fi/fi/,Finnish,true
+Spain,es,https://www.ikea.es/,Spanish,true
+Spain,es,https://canarias.ikea.es/,Spanish,true
+Croatia,hr,https://www.ikea.com/hr/hr/,Croatian,true
+Netherlands,nl,https://www.ikea.com/nl/en/,English,true
+Netherlands,nl,https://www.ikea.com/nl/nl/,Dutch,true
+Ireland,ie,https://www.ikea.com/ie/en/,English,true
+Italy,it,https://www.ikea.com/it/it/,Italian,true
+France,fr,https://www.ikea.com/fr/fr/,French,true
+Austria,at,https://www.ikea.com/at/en/,English,true
+Austria,at,https://www.ikea.com/at/de/,German,true
+Ukraine,ua,https://www.ikea.com/ua/uk/,Ukrainian,true
+Mexico,mx,https://www.ikea.com/mx/en/,English,true
+Mexico,mx,https://www.ikea.com/mx/es/,Spanish,true
+India,in,https://www.ikea.com/in/en/,English,true
+Chile,cl,https://www.ikea.com/cl/es/,Spanish,true
+Colombia,co,https://www.ikea.com/co/es/,Spanish,true
+Germany,de,https://www.ikea.com/de/de/,German,true
+Germany,de,https://www.ikea.com/de/en/,English,true
+Romania,ro,https://www.ikea.com/ro/ro/,Romanian,true
+Norway,no,https://www.ikea.com/no/en/,English,true
+Norway,no,https://www.ikea.com/no/no/,Norwegian,true
+Izrael,il,https://www.ikea.com/il/he/,Hebrew,true
+Latvia,lv,https://www.ikea.lv/lv/,Latvian,true
+Latvia,lv,https://www.ikea.lv/en/,English,true
+Estonia,ee,https://www.ikea.ee/en,English,true
+Katar,qa,https://www.ikea.com/qa/en/,English,true
+Katar,qa,https://www.ikea.com/qa/ar/,Arabic,true
+Oman,om,https://www.ikea.com/om/en/,English,true
+Oman,om,https://www.ikea.com/om/ar/,Arabic,true
+Japan,jp,https://www.ikea.com/jp/en/,English,true
+Japan,jp,https://www.ikea.com/jp/jp/,Japanese,true
+Bulgaria,bg,https://www.ikea.bg/,Bulgarian,false
+Greece,gr,https://www.ikea.gr/,Greek,false
+Turkey,tr,https://www.ikea.com.tr/,Turkish,false
