@@ -1,5 +1,5 @@
 import requests
-import json
+import math
 from bs4 import BeautifulSoup
 from typing import Dict, List
 from tqdm import tqdm
@@ -304,7 +304,7 @@ class ScrapeProducts:
         return product
     
     @staticmethod
-    def __scrape_products(products_urls: List[str], unscraped_path: str) -> List[Dict]:
+    def __scrape_products(products_urls: List[str], unscraped_path: str, loading_bar: tqdm) -> List[Dict]:
         options = ChromeOptions()
         options.add_argument("--headless")
         options.add_argument("--window-size=1920x1080")
@@ -342,11 +342,21 @@ class ScrapeProducts:
             product["category"] = product_data.get("category")
             product["sub_category"] = product_data.get("sub_category")
             products_metadata.append(product)
+            loading_bar.update(1)
         return products_metadata
         
     @staticmethod
     def scrape(input_path: str, output_path: str):
-        products = FileManager.read(input_path)
         unscraped_path = "/".join(output_path.split("/")[:-1]) + "/products_unscraped.json"
-        products_metadata = ScrapeProducts.__scrape_products(products, unscraped_path)
-        FileManager.save(products_metadata, output_path)
+
+        products = FileManager.read(input_path)
+        products_groups = [products[i:i+1000] for i in range(0, math.ceil(len(products)/1000)*1000, 1000)]
+
+        loading_bar = tqdm(total=len(products), desc="Downloading products info")
+
+        for i, products in enumerate(products_groups):
+            products_metadata = ScrapeProducts.__scrape_products(products, unscraped_path, loading_bar)
+            if i == 0:
+                FileManager.save(products_metadata, output_path)
+            else:
+                FileManager.extend(products_metadata, output_path)

@@ -141,5 +141,5 @@ class ScrapeUrls:
     def scrape(ikea_website_url: str, output_path: str):
         categories_url = ScrapeUrls.__scrape_categories_webpage_url(ikea_website_url)
         categories = ScrapeUrls.__scrape_categories_data(categories_url)
-        products_urls = ScrapeUrls.__scrape_products(categories[:1])
+        products_urls = ScrapeUrls.__scrape_products(categories)
         FileManager.save(products_urls, output_path)
