@@ -82,12 +82,15 @@ class ScrapeUrls:
         Returns:
             int: Total number of products.
         """
-        response = requests.get(category_url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        product_total_count = soup.find("div", class_="catalog-product-list__total-count")
-        product_total_count = product_total_count.text
-        products_number = [int(word) for word in product_total_count.split() if word[0].isdigit()]
-        return products_number[-1]
+        try:
+            response = requests.get(category_url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            product_total_count = soup.find("div", class_="catalog-product-list__total-count")
+            product_total_count = product_total_count.text
+            products_number = [int(word) for word in product_total_count.split() if word[0].isdigit()]
+            return products_number[-1]
+        except:
+            return 0
     
     @staticmethod
     def __get_number_of_pages(number_of_products: int) -> int:
@@ -100,7 +103,37 @@ class ScrapeUrls:
         Returns:
             int: Total number of pages needed to display all products.
         """
+        if number_of_products <= 0:
+            return 0
+
         return math.ceil((number_of_products - 12) / 48) + 1
+    
+    @staticmethod
+    def __remove_duplicates(products_urls: List[Dict]):
+        urls = {}
+
+        for product_url in products_urls:
+            url = product_url.get("url")
+            sub_category = list(product_url.get("category").keys())[0]
+            category_list = list(product_url.get("category").values())[0]
+
+            if product_url.get("url") in urls:
+                if sub_category in list(urls[url].keys()):
+                    urls[url][sub_category].extend(category_list)
+                else:
+                    urls[url][sub_category] = category_list
+            else:
+                urls[url] = product_url.get("category")
+        
+        urls = [
+            {
+                "url": url,
+                "category": category
+            }
+            for url, category in urls.items()
+        ]
+
+        return urls
 
     @staticmethod
     def __scrape_products(categories: List[Dict]) -> List[str]:
@@ -169,8 +202,9 @@ class ScrapeUrls:
                         product_link = inner_div.find_element(By.TAG_NAME, "a").get_attribute("href")
                         products_urls.append({
                             "url": product_link,
-                            "category": category.get("name"),
-                            "sub_category": category.get("sub_category_name")
+                            "category": {
+                                category.get("sub_category_name"): category.get("name")
+                            }
                         })
                     except Exception as e:
                         print(f"Error extracting product URL: {e}")
@@ -180,7 +214,7 @@ class ScrapeUrls:
 
         driver.quit()
         progress_bar.close()
-        return products_urls
+        return ScrapeUrls.__remove_duplicates(products_urls)
     
     @staticmethod
     def scrape(ikea_website_url: str, output_path: str):
@@ -193,5 +227,5 @@ class ScrapeUrls:
         """
         categories_url = ScrapeUrls.__scrape_categories_webpage_url(ikea_website_url)
         categories = ScrapeUrls.__scrape_categories_data(categories_url)
-        products_urls = ScrapeUrls.__scrape_products(categories)
+        products_urls = ScrapeUrls.__scrape_products(categories[:1])
         FileManager.save(products_urls, output_path)
