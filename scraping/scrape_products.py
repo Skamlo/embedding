@@ -405,7 +405,6 @@ class ScrapeProducts:
 
                 product["url"] = product_data.get("url")
                 product["category"] = product_data.get("category")
-                product["sub_category"] = product_data.get("sub_category")
                 products_metadata.append(product)
                 loading_bar.update(1)
             
