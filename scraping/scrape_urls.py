@@ -16,6 +16,15 @@ from scraping.file_manager import FileManager
 class ScrapeUrls:
     @staticmethod
     def __scrape_categories_webpage_url(website_url: str) -> str:
+        """
+        Retrieves the URL of the categories page from the main IKEA website.
+
+        Args:
+            website_url (str): The main IKEA website URL.
+
+        Returns:
+            str: URL of the categories page.
+        """
         response = requests.get(website_url)
         soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -27,6 +36,15 @@ class ScrapeUrls:
     
     @staticmethod
     def __scrape_categories_data(categories_url: str) -> List[Dict]:
+        """
+        Extracts all subcategories and categories with their names and URLs from the categories page.
+
+        Args:
+            categories_url (str): The URL of the categories page.
+
+        Returns:
+            List[Dict]: A list of dictionaries with category data.
+        """
         response = requests.get(categories_url)
         soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -55,6 +73,15 @@ class ScrapeUrls:
     
     @staticmethod
     def __get_total_number_of_products(category_url: str) -> int:
+        """
+        Retrieves the total number of products listed under a specific category.
+
+        Args:
+            category_url (str): URL of the category page.
+
+        Returns:
+            int: Total number of products.
+        """
         response = requests.get(category_url)
         soup = BeautifulSoup(response.text, 'html.parser')
         product_total_count = soup.find("div", class_="catalog-product-list__total-count")
@@ -64,10 +91,28 @@ class ScrapeUrls:
     
     @staticmethod
     def __get_number_of_pages(number_of_products: int) -> int:
+        """
+        Calculates the number of pages for a given total number of products.
+
+        Args:
+            number_of_products (int): Total number of products.
+
+        Returns:
+            int: Total number of pages needed to display all products.
+        """
         return math.ceil((number_of_products - 12) / 48) + 1
 
     @staticmethod
     def __scrape_products(categories: List[Dict]) -> List[str]:
+        """
+        Scrapes product URLs for all categories using Selenium.
+
+        Args:
+            categories (List[Dict]): A list of category data (name, sub_category_name, and URL).
+
+        Returns:
+            List[str]: A list of dictionaries containing product URLs and their corresponding category info.
+        """
         products_urls = []
 
         # Create web driver
@@ -139,6 +184,13 @@ class ScrapeUrls:
     
     @staticmethod
     def scrape(ikea_website_url: str, output_path: str):
+        """
+        Scrape products urls from IKEA website. Output will be saved in `output_path` file.
+
+        Args:
+            ikea_website_url (str): The URL of the IKEA website homepage.
+            output_path (str): The path where the scraped data will be saved.
+        """
         categories_url = ScrapeUrls.__scrape_categories_webpage_url(ikea_website_url)
         categories = ScrapeUrls.__scrape_categories_data(categories_url)
         products_urls = ScrapeUrls.__scrape_products(categories)
