@@ -180,17 +180,22 @@ class ScrapeUrls:
                 page_url = url + f"?page={page_number}"
                 driver.get(page_url)
 
+                product_wrappers = None
                 time.sleep(3)
-
-                try:
-                    product_list = driver.find_element(By.CLASS_NAME, "plp-product-list__products")
-                    product_wrappers = product_list.find_elements(By.CLASS_NAME, "plp-fragment-wrapper")
-                except Exception as e:
-                    print(f"Error extracting product list: {e}")
+                for _ in range(5):
+                    try:
+                        product_list = driver.find_element(By.CLASS_NAME, "plp-product-list__products")
+                        product_wrappers = product_list.find_elements(By.CLASS_NAME, "plp-fragment-wrapper")
+                    except Exception as e:
+                        time.sleep(5)
+                    else:
+                        break
+                else:
+                    print(f"Error extracting product list for {page_url}:\n{e}")
                     continue
 
                 if not isinstance(product_wrappers, Iterable):
-                    print(f"Error extracting product list: {e}")
+                    print(f"Error extracting product list for {page_url}:\n{e}")
                     continue
 
                 progress_bar.update(len(product_wrappers))
@@ -203,11 +208,11 @@ class ScrapeUrls:
                         products_urls.append({
                             "url": product_link,
                             "category": {
-                                category.get("sub_category_name"): category.get("name")
+                                category.get("sub_category_name"): [category.get("name")]
                             }
                         })
                     except Exception as e:
-                        print(f"Error extracting product URL: {e}")
+                        print(f"Error extracting product URL for {page_url}:\n{e}")
                         continue
             
             progress_bar.update(number_of_products[i] - n_products)
@@ -227,5 +232,5 @@ class ScrapeUrls:
         """
         categories_url = ScrapeUrls.__scrape_categories_webpage_url(ikea_website_url)
         categories = ScrapeUrls.__scrape_categories_data(categories_url)
-        products_urls = ScrapeUrls.__scrape_products(categories[:1])
+        products_urls = ScrapeUrls.__scrape_products(categories)
         FileManager.save(products_urls, output_path)
